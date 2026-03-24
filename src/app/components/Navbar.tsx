@@ -7,7 +7,7 @@ export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
-    const saved = localStorage.getItem("theme") || "business";
+    const saved = localStorage.getItem("theme") || "forest";
     setTheme(saved);
     document.documentElement.setAttribute("data-theme", saved);
   }, []);
@@ -19,7 +19,7 @@ export default function Navbar() {
   }, []);
 
   const toggleTheme = () => {
-    const next = theme === "business" ? "corporate" : "business";
+    const next = theme === "forest" ? "forest-light" : "forest";
     setTheme(next);
     localStorage.setItem("theme", next);
     document.documentElement.setAttribute("data-theme", next);
@@ -53,7 +53,7 @@ export default function Navbar() {
           <input
             type="checkbox"
             onChange={toggleTheme}
-            checked={theme === "corporate"}
+            checked={theme === "forest-light"}
           />
           <svg
             className="swap-off h-5 w-5 fill-current"

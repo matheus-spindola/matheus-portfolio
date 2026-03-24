@@ -251,7 +251,7 @@ export default function Home() {
             transition={{ duration: 0.6 }}
           >
             <h2 className="text-4xl md:text-5xl font-bold font-[family-name:var(--font-display)] mb-6">
-              Let&apos;s kill the old
+              Let&apos;s rethink the old
               <br />
               <span className="text-primary">process together.</span>
             </h2>

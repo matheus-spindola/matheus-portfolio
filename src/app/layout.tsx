@@ -28,7 +28,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      data-theme="business"
+      data-theme="forest"
       className={`${sora.variable} ${dmSans.variable}`}
     >
       <body className="min-h-screen flex flex-col font-[family-name:var(--font-body)]">
