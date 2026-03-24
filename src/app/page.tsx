@@ -1,6 +1,47 @@
 "use client";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
+import { useState, useEffect } from "react";
+
+const deadWords = [
+  { text: "dead.", color: "text-primary" },
+  { text: "dead?", color: "text-primary" },
+  { text: "dead!", color: "text-primary" },
+  { text: "DEAD!", color: "text-primary" },
+  { text: "💀", color: "text-base-content" },
+];
+
+function DeadWord() {
+  const [index, setIndex] = useState(0);
+
+  useEffect(() => {
+    const id = setInterval(
+      () => setIndex((i) => (i + 1) % deadWords.length),
+      2000,
+    );
+    return () => clearInterval(id);
+  }, []);
+
+  const { text, color } = deadWords[index];
+
+  return (
+    <span className="inline-block" style={{ perspective: "600px" }}>
+      <AnimatePresence mode="wait" initial={false}>
+        <motion.span
+          key={index}
+          className={`inline-block ${color}`}
+          initial={{ rotateX: 90, opacity: 0 }}
+          animate={{ rotateX: 0, opacity: 1 }}
+          exit={{ rotateX: -90, opacity: 0 }}
+          transition={{ duration: 0.2, ease: [0.25, 0.4, 0.25, 1] }}
+          style={{ transformOrigin: "50% 50%", display: "inline-block" }}
+        >
+          {text}
+        </motion.span>
+      </AnimatePresence>
+    </span>
+  );
+}
 
 const fadeUp = {
   hidden: { opacity: 0, y: 30 },
@@ -66,7 +107,8 @@ export default function Home() {
           >
             The design process
             <br />
-            <span className="text-primary">you learned is dead.</span>
+            <span className="text-primary">you learned is </span>
+            <DeadWord />
           </motion.h1>
           <motion.p
             className="text-lg md:text-xl text-base-content/60 max-w-xl mb-10 leading-relaxed"
